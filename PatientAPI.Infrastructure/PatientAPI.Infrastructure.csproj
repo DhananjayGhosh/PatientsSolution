@@ -16,11 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PatientAPI.Domain\PatientAPI.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DbEntity\" />
+    <ProjectReference Include="..\PatientAPI.Application\PatientAPI.Application.csproj" />
   </ItemGroup>
 
 </Project>

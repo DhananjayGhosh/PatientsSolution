@@ -58,7 +58,27 @@ namespace PatientAPI.App.Controllers
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while booking the appointment.");
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Failed booking the appointment.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
+        }
+        [HttpGet("doctorDetails")]
+        public async Task<IActionResult> GetDoctorDetails()
+        {
+            try
+            {
+                var doctors = await patientService.GetDoctorDetails();
+                if (doctors != null)
+                {
+                    return Ok(doctors);
+                }
+                else
+                {
+                    return NotFound("No doctor details found.");
                 }
             }
             catch (Exception ex)

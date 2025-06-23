@@ -1,4 +1,5 @@
 ﻿using PatientAPI.Domain.DTOs;
+using PatientAPI.Domain.Entities;
 
 namespace PatientAPI.Domain.Services
 {
@@ -6,5 +7,6 @@ namespace PatientAPI.Domain.Services
     {
         Task<string> AddPatientAsync(PersonalInfoDto patient);
         Task<bool> BookingAppoint(BookScheduleDto bookSchedule);
+        Task<List<DoctorEntity>?> GetDoctorDetails();
     }
 }

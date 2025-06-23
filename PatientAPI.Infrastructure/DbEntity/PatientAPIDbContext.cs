@@ -15,6 +15,7 @@ namespace PatientAPI.Infrastructure.DbEntity
 
         public virtual DbSet<AppointTable> AppointTables { get; set; } = null!;
         public virtual DbSet<PersonalInfo> PersonalInfos { get; set; } = null!;
+        public virtual DbSet<DoctorTable> DoctorTables { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -115,6 +116,46 @@ namespace PatientAPI.Infrastructure.DbEntity
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
+            modelBuilder.Entity<DoctorTable>(entity =>
+            {
+                entity.ToTable("DoctorTable");
+
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.DoctorId)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DoctorName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Department)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PhoneNumber)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedOn)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("GETUTCDATE()");
+
+                entity.Property(e => e.UpdatedOn)
+                    .HasColumnType("datetime")
+                    .IsRequired(false);
+            });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

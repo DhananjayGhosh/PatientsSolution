@@ -42,5 +42,19 @@ namespace PatientAPI.Application
                 await smtpClient.SendMailAsync(mailMessage);
             }
         }
+
+        // Helper function to load and replace placeholders in email templates
+        public string LoadEmailTemplate(string templatePath, Dictionary<string, string> placeholders)
+        {
+            var template = File.ReadAllText(templatePath);
+
+            foreach (var placeholder in placeholders)
+            {
+                template = template.Replace($"{{{{{placeholder.Key}}}}}", placeholder.Value);
+            }
+
+            return template;
+        }
+
     }
 }

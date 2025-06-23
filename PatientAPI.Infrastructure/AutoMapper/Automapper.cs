@@ -1,4 +1,5 @@
 ﻿using PatientAPI.Domain.DTOs;
+using PatientAPI.Domain.Entities;
 using PatientAPI.Infrastructure.DbEntity;
 
 namespace PatientAPI.Infrastructure.AutoMapper
@@ -40,6 +41,15 @@ namespace PatientAPI.Infrastructure.AutoMapper
                 UpdatedOn = DateTime.UtcNow // Assuming UpdatedOn is set to the current time
             };
             return bookSchedule;
+        }
+        public static List<DoctorEntity> MapToDoctorEntity(List<DoctorTable> doctor)
+        {
+            return doctor.Select(d => new DoctorEntity
+            {
+                DoctorId = d.DoctorId,
+                DoctorName = d.DoctorName,
+                Department = d.Department
+            }).ToList();
         }
     }
 }

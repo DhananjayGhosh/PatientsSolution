@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PatientAPI.Domain.DTOs;
+using PatientAPI.Domain.Entities;
 using PatientAPI.Domain.Repositories;
 using PatientAPI.Infrastructure.AutoMapper;
 using PatientAPI.Infrastructure.DbEntity;
@@ -43,6 +44,16 @@ namespace PatientAPI.Infrastructure.Repositories
                 return true;
             }
             return false;
+        }
+
+        public async Task<List<DoctorEntity>?> GetDoctorDetails()
+        {
+            var doctors = await context.DoctorTables.ToListAsync();
+            if (doctors != null && doctors.Count > 0)
+            {
+                return Automapper.MapToDoctorEntity(doctors);
+            }
+            return null;
         }
     }
 }
