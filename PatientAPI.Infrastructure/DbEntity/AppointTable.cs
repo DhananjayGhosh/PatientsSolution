@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PatientAPI.Infrastructure.DbEntity
+﻿namespace PatientAPI.Infrastructure.DbEntity
 {
     public partial class AppointTable
     {
